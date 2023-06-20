@@ -3,24 +3,48 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
+  nix = {
+    # package = pkgs.nixUnstable;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./dotfiles.nix
+      ./mail.nix
     ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  # nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "xeri-nixos"; # Define your hostname.
+  boot.supportedFilesystems = [ "ext4" ];
+  boot.loader = {
+    # systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+
+    # Use the GRUB 2 boot loader.
+    grub = {
+      enable = true;
+      efiSupport = true;
+      # boot is located on encrypted partition
+      enableCryptodisk = true;
+      # efiInstallAsRemovable = true;
+      # Define on which hard drive you want to install Grub.
+      device = "nodev"; # or "nodev" for efi only
+    };
+  };
+
+  # luks
+  boot.initrd.luks.devices = {
+    crypted = {
+     device = "/dev/disk/by-uuid/86095804-be34-4d0e-a2a5-da252c55aecd";
+     preLVM = true;
+    };
+  };
+
+  networking.hostName = "jkaisrli-DESK"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
@@ -30,49 +54,79 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp4s0.useDHCP = true;
-  networking.interfaces.wlp3s0b1.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
 
   # links /libexec from derivations to /run/current-system/sw
   environment.pathsToLink = [ "/libexec" ];
+
+#   services.xserver = {
+#     enable = true;
+#     # Configure keymap in X11
+#     layout = "us";
+#     xkbOptions = "eurosign:e";
+#
+#     desktopManager = {
+#       xterm.enable = false;
+#     };
+#     displayManager = {
+#       defaultSession = "none+i3";
+#     };
+#
+#     windowManager.i3 = {
+#       enable = true;
+#       extraPackages = with pkgs; [
+#         dmenu
+#         i3blocks
+#         i3lock
+#       ];
+#     };
+#     # Enable touchpad support (enabled default in most desktopManager).
+#     libinput.enable = true;
+#   };
 
   services.xserver = {
     enable = true;
     # Configure keymap in X11
     layout = "us";
     xkbOptions = "eurosign:e";
-
-    desktopManager = {
-      xterm.enable = false;
-    };
-    displayManager = {
-      defaultSession = "none+i3";
-    };
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3blocks
-        i3lock
-      ];
-    };
-
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = true;
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+      swaylock
+      swayidle
+      wl-clipboard
+      dmenu-wayland
+      i3blocks
+      mako
+    ];
+  };
+
+  xdg.portal = {
+    enable = true;
+    # enable share sreen
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -81,58 +135,66 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.xeri = {
+  users.users.jkaisrli = {
     isNormalUser = true;
     shell = "/run/current-system/sw/bin/zsh";
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "disk" "input" "video" "network" "audio" ]; # Enable ‘sudo’ for the user.
   };
 
   users.users.root = {
     shell = "/run/current-system/sw/bin/zsh";
   };
 
-#  "configs".source = builtins.fetchGit {
-#    url = "https://github.com/Kaisrlik/configs.git";
-#    rev = "3967f59ef0eabda5076327f1784e38ede3fdd7a5";
-#  };
+
+  # enabled in later version
+  # nixpkgs.overlays = [ (self: super: {
+  #   isync = super.isync.override { withCyrusSaslXoauth2 = true; };
+  # })];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim-vint
+    vim
+    neovim
     ccls
     ctags
 
+    foot
     git
     tig
     lnav
     zsh
     home-manager
     fzf
-    
+
     gnumake
     cmake
     meson
     ninja
-
     gcc
-    clang
-    
 
+    # email
+    notmuch
+    neomutt
+    abook
+
+    libnotify
     curl
-    xclip
     firefox
     perl # required by some i3 scripts
+    python3 # required by nvim and other tools
     bash
     acpi # see battery status
     pavucontrol
-  ];
 
-  environment.etc."vimrc".source = "/home/xeri/configs/vim.configs/vimrc";
+    # vpn, certs, proxies
+    openconnect
+    openssl # expiration of certs
+    cacert
+    netcat-openbsd
+    pinentry-curses # gpg requires
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -146,6 +208,16 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # gnugpg
+  # Additionally, link to pinentry has to exists
+  # $ cat ~/.gnupg/gpg-agent.conf
+  # pinentry-program /run/current-system/sw/bin/pinentry
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+  };
 
   # Enable the networkmanager deamon
   networking.networkmanager.enable = true;
@@ -161,6 +233,8 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.05"; # Did you read the comment?
+  system.stateVersion = "23.05";
 
+  ## INTEL SPECIFIC
+  security.pki.certificateFiles = [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" /etc/nixos/intelmerge.crt ];
 }
