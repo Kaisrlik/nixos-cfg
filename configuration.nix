@@ -104,6 +104,7 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
   };
+  # services.gnome3.gnome-keyring.enable = true;
 
   programs.sway = {
     enable = true;
@@ -167,12 +168,19 @@
     zsh
     home-manager
     fzf
+    shellcheck
 
     gnumake
     cmake
     meson
     ninja
     gcc
+    jq
+
+    # impressive - dropped due to lack of support
+    gnome.eog
+    vlc
+    lynx # html/text
 
     # email
     notmuch
@@ -181,7 +189,7 @@
 
     libnotify
     curl
-    firefox
+    firefox-wayland
     perl # required by some i3 scripts
     python3 # required by nvim and other tools
     bash
@@ -189,12 +197,15 @@
     pavucontrol
 
     # vpn, certs, proxies
+    cacert
+    keychain
+    netcat-openbsd
     openconnect
     openssl # expiration of certs
-    cacert
-    netcat-openbsd
     pinentry-curses # gpg requires
   ];
+
+  environment.variables.EDITOR = "nvim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -208,6 +219,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.startAgent = true;
 
   # gnugpg
   # Additionally, link to pinentry has to exists
@@ -217,6 +229,20 @@
   programs.gnupg.agent = {
      enable = true;
      enableSSHSupport = true;
+  };
+
+  programs.firefox = {
+    enable = true;
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+      extraPolicies = {
+        ExtensionSettings = {};
+      };
+    };
+  };
+  services.pipewire.enable = true;
+  environment.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = "1";
+    XDG_CURRENT_DESKTOP = "sway";
   };
 
   # Enable the networkmanager deamon
