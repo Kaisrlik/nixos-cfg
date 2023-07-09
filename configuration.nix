@@ -182,7 +182,7 @@
     jq
 
     # impressive - dropped due to lack of support
-    gnome.eog
+    evince
     vlc
     lynx # html/text
 
