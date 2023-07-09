@@ -115,7 +115,8 @@
       wl-clipboard
       dmenu-wayland
       i3blocks
-      mako
+      mako # notification daemon
+      sysstat # cpu_stats script
     ];
   };
 
@@ -129,6 +130,8 @@
     ];
   };
 
+  security.polkit.enable = true;
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -139,12 +142,12 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jkaisrli = {
     isNormalUser = true;
-    shell = "/run/current-system/sw/bin/zsh";
+    shell = pkgs.zsh;
     extraGroups = [ "wheel" "docker" "disk" "input" "video" "network" "audio" ]; # Enable ‘sudo’ for the user.
   };
 
   users.users.root = {
-    shell = "/run/current-system/sw/bin/zsh";
+    shell = pkgs.zsh;
   };
 
 
@@ -205,31 +208,44 @@
     pinentry-curses # gpg requires
   ];
 
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+      "slack"
+      "spotify"
+      "teams"
+    ];
+  };
+
+  programs.firejail = {
+    enable = true;
+    wrappedBinaries = {
+      slack = "${pkgs.slack}/bin/slack";
+      spotify = "${pkgs.spotify}/bin/spotify";
+      # teams = "${pkgs.teams}/bin/teams";
+    };
+  };
+
   environment.variables.EDITOR = "nvim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  services.pcscd.enable = true;
+  # Additionally, link to pinentry has to exists
+  # $ cat ~/.gnupg/gpg-agent.conf
+  # pinentry-program /run/current-system/sw/bin/pinentry
+  programs.gnupg.agent = {
+    enable = true;
+    # enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.startAgent = true;
+  programs.ssh.startAgent = true;
 
-  # gnugpg
-  # Additionally, link to pinentry has to exists
-  # $ cat ~/.gnupg/gpg-agent.conf
-  # pinentry-program /run/current-system/sw/bin/pinentry
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-  };
+  programs.zsh.enable = true;
 
   programs.firefox = {
     enable = true;
