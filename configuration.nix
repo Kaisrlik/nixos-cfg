@@ -169,10 +169,14 @@
     git
     tig
     lnav
+    ltex-ls
     zsh
-    home-manager
     fzf
     shellcheck
+
+    # nix specific
+    home-manager
+    direnv
 
     gnumake
     cmake
@@ -207,7 +211,16 @@
     openconnect
     openssl # expiration of certs
     pinentry-curses # gpg requires
+
+    # windows rdp
+    remmina
+
+    man-pages
+    man-pages-posix
   ];
+
+  # libraries and dev utils may provide additional documentation/man-pages
+  documentation.dev.enable = true;
 
   nixpkgs.config = {
     allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
@@ -243,7 +256,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
   programs.ssh.startAgent = true;
 
   programs.zsh.enable = true;
