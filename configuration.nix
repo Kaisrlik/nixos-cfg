@@ -173,7 +173,7 @@
     gcc
     jq
 
-    # impressive - dropped due to lack of support
+    (import ./pkgs/impressive { inherit pkgs; })
     evince
     vlc
     lynx # html/text
@@ -187,7 +187,11 @@
     curl
     firefox-wayland
     perl # required by some i3 scripts
-    python3 # required by nvim and other tools
+    # required by nvim and other tools
+    (python3.withPackages (p: with p; [
+      # impressive dep
+      pillow pygame
+    ]))
     bash
     acpi # see battery status
     pavucontrol
