@@ -29,23 +29,11 @@
       enable = true;
       efiSupport = true;
       # boot is located on encrypted partition
-      enableCryptodisk = true;
       # efiInstallAsRemovable = true;
       # Define on which hard drive you want to install Grub.
       device = "nodev"; # or "nodev" for efi only
     };
   };
-
-  # luks
-  boot.initrd.luks.devices = {
-    crypted = {
-     device = "/dev/disk/by-uuid/86095804-be34-4d0e-a2a5-da252c55aecd";
-     preLVM = true;
-    };
-  };
-
-  networking.hostName = "jkaisrli-DESK"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Prague";
@@ -290,7 +278,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05";
-
-  ## INTEL SPECIFIC
-  security.pki.certificateFiles = [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" /etc/nixos/intelmerge.crt ];
 }

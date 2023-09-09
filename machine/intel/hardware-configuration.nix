@@ -12,6 +12,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.loader.grub.enableCryptodisk = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/99fa8d52-c794-41f0-8231-e81e498c288b";
@@ -33,9 +34,23 @@
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
+  # luks
+  boot.initrd.luks.devices = {
+    crypted = {
+     device = "/dev/disk/by-uuid/86095804-be34-4d0e-a2a5-da252c55aecd";
+     preLVM = true;
+    };
+  };
+
+  networking.hostName = "jkaisrli-DESK"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  ## INTEL SPECIFIC
+  security.pki.certificateFiles = [ "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" /etc/nixos/intelmerge.crt ];
 
   hardware.opengl = {
     enable = true;
