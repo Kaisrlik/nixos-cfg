@@ -1,7 +1,10 @@
 { config, lib, pkgs, ... }:
-{
+let
+  proton-ge-custom = (import ../pkgs/proton-ge-custom { inherit pkgs; });
+in {
   environment.systemPackages = with pkgs; [
     discord
+    proton-ge-custom
   ];
 
   programs.steam = {
@@ -12,4 +15,5 @@
     dedicatedServer.openFirewall = true;
   };
 
+  environment.variables.STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${proton-ge-custom}";
 }

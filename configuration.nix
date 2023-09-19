@@ -173,7 +173,7 @@
     gcc
     jq
 
-    (import ./pkgs/impressive { inherit pkgs; })
+    (callPackage ./pkgs/impressive { })
     evince
     vlc
     lynx # html/text
@@ -215,13 +215,13 @@
   documentation.dev.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+      "discord"
       "slack"
       "spotify"
       "steam"
       "steam-original"
       "steam-run"
       "teams"
-      "discord"
   ];
 
   programs.firejail = {
