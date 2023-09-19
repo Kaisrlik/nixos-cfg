@@ -24,6 +24,28 @@
       fsType = "vfat";
     };
 
+  fileSystems."/export/nfs" = {
+    device = "/home/xeri/Downloads";
+    options = [ "bind" ];
+  };
+  services.nfs.server = {
+    enable = true;
+    # fixed rpc.statd port; for firewall
+    lockdPort = 4001;
+    mountdPort = 4002;
+    statdPort = 4000;
+    extraNfsdConfig = '''';
+    exports = ''
+      /export/nfs    192.168.1.0/24(ro,nohide,insecure,no_subtree_check)
+    '';
+  };
+  networking.firewall = {
+    enable = true;
+      # for NFSv3; view with `rpcinfo -p`
+    allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
+    allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -37,6 +59,24 @@
   networking.hostName = "xeri-beast";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+
+  fileSystems = {
+    "/games" = {
+      device = "/dev/disk/by-uuid/ea18000d-2e28-4988-8939-3180ddaa20b6";
+      fsType = "ext4";
+      # options = [ ];
+    };
+  };
 }

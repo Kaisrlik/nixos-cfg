@@ -214,13 +214,15 @@
   # libraries and dev utils may provide additional documentation/man-pages
   documentation.dev.enable = true;
 
-  nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
       "slack"
       "spotify"
+      "steam"
+      "steam-original"
+      "steam-run"
       "teams"
-    ];
-  };
+      "discord"
+  ];
 
   programs.firejail = {
     enable = true;
