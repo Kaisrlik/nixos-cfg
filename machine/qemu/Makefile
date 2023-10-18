@@ -12,3 +12,6 @@ build:
 # export QEMU_NET_OPTS="hostfwd=tcp::2222-:22"
 build_qemu_in_runner:
 	nixos-rebuild -I nixos-config=./configuration.nix build-vm
+
+flake:
+	nixos-rebuild --flake .#linuxVM build-vm

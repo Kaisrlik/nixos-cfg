@@ -3,7 +3,7 @@ let
   lib = pkgs.lib;
   nixos =  <nixpkgs/nixos>;
   hostName = "qemu";
-  configuration = import ./configuration.nix { inherit hostName pkgs; };
+  configuration = import ./configuration.nix { inherit pkgs; };
 
   # Image config
   config = (import nixos { inherit system configuration; });

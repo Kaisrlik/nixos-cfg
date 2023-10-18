@@ -1,11 +1,15 @@
-{ hostName, pkgs, ... }:
+{ pkgs, ... }:
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  # TODO: If flakes are used following lines are not needed
+  # imports = [
+  #   ./hardware-configuration.nix
+  # ];
+  # system.copySystemConfiguration = true;
 
-  networking.hostName = hostName;
-  system.copySystemConfiguration = true;
+
+  system.stateVersion = "23.05";
+
+  networking.firewall.enable = false;
 
   environment.systemPackages = with pkgs; [
     iputils
@@ -15,21 +19,19 @@
     vim
   ];
 
-  services.ntp = {
-    enable = true;
-    servers = [ "time.google.com" ];
-  };
-
   services.openssh.enable = true;
   programs.bash.enableCompletion = true;
-  security.sudo.enable = true;
 
   users.users.dev = {
     isNormalUser = true;
     initialPassword = "";
     extraGroups = [ "wheel" ];
-    # openssh.authorizedKeys.keyFiles = [ ./machine_rsa.pub ];
+  # openssh.authorizedKeys.keyFiles = [ ./machine_rsa.pub ];
   };
+  services.getty.autologinUser = "dev";
 
-  system.stateVersion = "23.05";
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
+  };
 }
