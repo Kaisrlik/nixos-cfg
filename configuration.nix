@@ -51,14 +51,17 @@
     ccls
     ctags
 
+    file
     foot
+    fzf
     git
-    tig
+    htop
     lnav
     ltex-ls
-    zsh
-    fzf
     shellcheck
+    tig
+    tree
+    zsh
 
     # nix specific
     home-manager
