@@ -15,3 +15,5 @@ build_qemu_in_runner:
 
 flake:
 	nixos-rebuild --flake .#linuxVM build-vm
+flake_qcow:
+	nix build .#qcow
