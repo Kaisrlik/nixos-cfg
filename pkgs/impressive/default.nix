@@ -1,5 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
-with pkgs;
+{ lib, stdenv, pkgs, python3Packages, SDL2, mupdf }:
 
 stdenv.mkDerivation rec {
 	pname = "impressive0131";
@@ -10,13 +9,20 @@ stdenv.mkDerivation rec {
 	};
 
 	# runtime dependecies
-	# buildInputs = [ SDL2 mupdf python3Packages.pillow python3Packages.pygame ];
-	buildInputs = [ SDL2 mupdf ];
+	buildInputs = [ SDL2 mupdf ] ++ (with python3Packages; [ pillow pygame ]);
 	# build env dependecies
-	nativeBuildInputs = [ ];
+	nativeBuildInputs = with pkgs; [
+		makeWrapper
+	];
+
 	buildPhase = '' '';
 	installPhase = ''
-		mkdir -p $out/bin
-		install -m 0755 $src/impressive.py $out/bin/impressive
+		install -D -m 0755 $src/impressive.py $out/bin/impressive
+	'';
+
+	postFixup = ''
+		wrapProgram $out/bin/impressive \
+			--set PATH ${pkgs.lib.makeBinPath (with pkgs; [ mupdf ])} \
+			--set PYTHONPATH $PYTHONPATH
 	'';
 }
