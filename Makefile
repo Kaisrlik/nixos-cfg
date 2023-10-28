@@ -1,5 +1,5 @@
-switch:
-	nixos-rebuild switch -I nixos-config=./configuration.nix
+IMAGE=intel
+-include Makefile.local
 
 flake:
-	nixos-rebuild switch --impure --flake .#intel
+	nixos-rebuild switch --impure --flake .#$(IMAGE)

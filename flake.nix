@@ -14,7 +14,11 @@
 			nixosConfigurations = {
 				intel = lib.nixosSystem {
 					inherit system;
-					modules = [ ./configuration.nix ];
+					modules = [ ./machine/intel/configuration.nix ];
+				};
+				beast = lib.nixosSystem {
+					inherit system;
+					modules = [ ./machine/beast/configuration.nix ];
 				};
 			};
 		};

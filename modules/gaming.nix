@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 let
   proton-ge-custom = (import ../pkgs/proton-ge-custom { inherit pkgs; });
 in {
