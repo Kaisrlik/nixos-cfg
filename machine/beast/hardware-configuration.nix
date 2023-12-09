@@ -28,6 +28,7 @@
     device = "/home/xeri/Downloads";
     options = [ "bind" ];
   };
+
   services.nfs.server = {
     enable = true;
     # fixed rpc.statd port; for firewall
@@ -79,4 +80,12 @@
       # options = [ ];
     };
   };
+
+  fileSystems."/opt/images" = {
+    device = "/dev/disk/by-uuid/126C46C16C469F7B";
+    fsType = "ntfs-3g";
+    # TODO: Pass uid
+    options = [ "rw" "uid=1001"];
+  };
+
 }
