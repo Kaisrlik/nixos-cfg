@@ -1,4 +1,4 @@
-{ lib, stdenv, pkgs, python3Packages, SDL2, mupdf }:
+{ lib, stdenv, pkgs, python3Packages, SDL2, mupdf, coreutils }:
 
 stdenv.mkDerivation rec {
 	pname = "impressive0131";
@@ -21,8 +21,12 @@ stdenv.mkDerivation rec {
 	'';
 
 	postFixup = ''
+		# TODO: fix propper passing of SDL2
+		# for some reason CDLL does not use LD_LIBRARY_PATH
+		sed -i "s#sdl = CDLL(sdl, RTLD_GLOBAL)#sdl = CDLL(\"${lib.makeLibraryPath [ SDL2 ]}/libSDL2.so\", RTLD_GLOBAL)#" $out/bin/impressive
 		wrapProgram $out/bin/impressive \
-			--set PATH ${pkgs.lib.makeBinPath (with pkgs; [ mupdf ])} \
-			--set PYTHONPATH $PYTHONPATH
+			--set PATH ${pkgs.lib.makeBinPath [ mupdf coreutils ]} \
+			--set PYTHONPATH $PYTHONPATH \
+			--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ SDL2 ]}
 	'';
 }
