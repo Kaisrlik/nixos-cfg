@@ -36,6 +36,7 @@
     neovim
     ccls
     ctags
+    silver-searcher
 
     file
     foot
