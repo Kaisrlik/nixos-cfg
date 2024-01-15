@@ -7,7 +7,7 @@
   # system.copySystemConfiguration = true;
 
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 
   networking.firewall.enable = false;
 
@@ -33,7 +33,9 @@
 
   users.users.dev = {
     isNormalUser = true;
-    initialPassword = "";
+    # TODO: with troubles with login, please remove qcow2 file
+    # Generated via `mkpasswd -m sha-512 root`
+    #hashedPassword = "$6$0VDLplrus3SJr0Q7$U3N4kcBBMJVJ4MDK5Ys8xKYfkuTT.YFGsra.j/ipmz92sCyCD0v7ICRuZ8dRWihEys7ZY79xDPI0Ho3EnvXzz.";
     extraGroups = [ "wheel" ];
   # openssh.authorizedKeys.keyFiles = [ ./machine_rsa.pub ];
   };

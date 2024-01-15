@@ -2,6 +2,8 @@
 # a qemu test vm to try out the configurtion and the other containing a sanitary
 # qcow2 image.
 
+all: flake
+
 build:
 	nix-build
 	# NIX_PATH=$NIX_PATH:nixos-config=./configuration.nix nix-build
