@@ -1,11 +1,11 @@
 { lib, stdenv, pkgs, python3Packages, SDL2, mupdf, coreutils }:
 
 stdenv.mkDerivation rec {
-	pname = "impressive0131";
-	version = "0.13.1";
+	pname = "impressive-local";
+	version = "0.13.2";
 	src = fetchTarball {
-		url = "http://downloads.sourceforge.net/impressive/Impressive-0.13.1.tar.gz";
-		sha256 = "158gnm96xg15d769y91s6ksy845vnngc45nskh2i26db9k70nyw3";
+		url = "http://downloads.sourceforge.net/impressive/Impressive-0.13.2.tar.gz";
+		sha256 = "sha256:0zbkqc29mgm93mysf3y5gvkaj4xxp1jv4ix1fqrcpfx3cricrkql";
 	};
 
 	# runtime dependecies
