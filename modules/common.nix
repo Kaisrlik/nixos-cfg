@@ -117,6 +117,11 @@
     keyMap = "us";
   };
 
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
+
+
   # links /libexec from derivations to /run/current-system/sw
   environment.pathsToLink = [ "/libexec" ];
 
