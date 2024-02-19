@@ -1,7 +1,7 @@
 {
 	description = "Xeris NIXOS";
 
-	inputs.nixpkgs.url = "nixpkgs/nixos-23.11";
+	inputs.nixpkgs.url = "nixpkgs/nixos-unstable-small";
 
 	outputs = { self, nixpkgs }:
 		let

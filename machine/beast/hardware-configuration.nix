@@ -13,6 +13,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "split_lock_detect=off" "clearcpuid=514" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/6b8d9712-6d84-4d08-84c1-b7710abd66c3";
