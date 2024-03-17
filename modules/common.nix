@@ -90,7 +90,6 @@
     netcat-openbsd
     openconnect
     openssl # expiration of certs
-    pinentry-curses # gpg requires
 
     # windows rdp
     remmina
@@ -172,6 +171,7 @@
   programs.gnupg.agent = {
     enable = true;
     # enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
   # List services that you want to enable:
 
