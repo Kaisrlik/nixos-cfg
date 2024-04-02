@@ -43,6 +43,7 @@
     fzf
     git
     htop
+    killall
     lnav
     ltex-ls
     shellcheck
@@ -71,8 +72,11 @@
     neomutt
     abook
 
-    libnotify
     curl
+    rsync
+    sshfs
+
+    libnotify
     firefox-wayland
     perl # required by some i3 scripts
     # required by nvim and other tools
