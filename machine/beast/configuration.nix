@@ -23,4 +23,6 @@ in {
     extraGroups = [ "wheel" "docker" "disk" "input" "video" "network" "audio" "dialout" ]; # Enable ‘sudo’ for the user.
   };
 
+  gaming.enable = true;
+
 }
