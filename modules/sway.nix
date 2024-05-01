@@ -7,9 +7,10 @@
     xkb.options = "eurosign:e";
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
-    # Enable touchpad support (enabled default in most desktopManager).
-    libinput.enable = true;
   };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.libinput.enable = true;
 
   programs.sway = {
     enable = true;
