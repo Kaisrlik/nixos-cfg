@@ -1,0 +1,29 @@
+From eed29ec7cc97af710c03cf0dba09e370eeebad14 Mon Sep 17 00:00:00 2001
+From: Jan Kaisrlik <ja.kaisrlik@gmail.com>
+Date: Thu, 2 May 2024 15:15:19 +0200
+Subject: [PATCH] disable_route_splitting
+
+Signed-off-by: Jan Kaisrlik <ja.kaisrlik@gmail.com>
+---
+ vpnc-script | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/vpnc-script b/vpnc-script
+index ebe6d67..3bec5e9 100755
+--- a/vpnc-script
++++ b/vpnc-script
+@@ -82,6 +82,11 @@
+ #TRACE# env | grep -E '^(CISCO_|INTERNAL_IP|VPNGATEWAY|TUNDEV|IDLE_TIMEOUT|reason)' | sort
+ #TRACE# echo "------------------"
+ #TRACE# set -x
++unset CISCO_SPLIT_DNS
++unset CISCO_SPLIT_EXC
++unset CISCO_SPLIT_INC
++unset CISCO_IPV6_SPLIT_EXC
++unset CISCO_IPV6_SPLIT_INC
+ 
+ # =========== script (variable) setup ====================================
+ 
+-- 
+2.44.0
+

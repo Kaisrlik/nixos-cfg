@@ -6,6 +6,24 @@
 let
   username = "jkaisrli";
 in {
+
+  # It seems this triggers some additional build in the system
+  nixpkgs.overlays = [ (
+    final: prev: {
+      vpnc-scripts = prev.vpnc-scripts.overrideAttrs (old: {
+        patches = (old.patches or []) ++ [
+          ./../../patches/0001-vpnc-scripts-disable_route_splitting.patch
+        ];
+      });
+    }
+  )];
+  # vpnc-scripts-drop-routes = pkgs.coreutils.overrideAttrs (oldAttrs: rec {
+  #   name = "vpnc-scripts-drop-routes";
+  #   patches = (oldAttrs.patches or []) ++ [
+  #     ./../../patches/0001-vpnc-scripts-disable_route_splitting.patch
+  #   ];
+  # });
+
   imports =
     [
       ./hardware-configuration.nix
