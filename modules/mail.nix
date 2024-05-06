@@ -15,5 +15,6 @@ in
 {
   environment.systemPackages = with pkgs; [
     isync-oauth2 # oauth2ms
+    pinentry # to provide pass for tty
   ];
 }
