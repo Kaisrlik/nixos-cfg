@@ -5,8 +5,12 @@
     # Configure keymap in X11
     xkb.layout = "us";
     xkb.options = "eurosign:e";
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
+    desktopManager.enlightenment.enable = true;
+    displayManager.ly = {
+      enable = true;
+      defaultUser = "xeri";
+    };
+#     windowManager.default = "sway";
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
