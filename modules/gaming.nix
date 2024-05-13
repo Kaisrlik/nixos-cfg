@@ -10,6 +10,7 @@ in {
   config = lib.mkIf config.gaming.enable {
     environment.systemPackages = with pkgs; [
       discord
+      mangohud
       proton-ge-custom
     ];
 
@@ -20,6 +21,7 @@ in {
       # Open ports in the firewall for Source Dedicated Server
       dedicatedServer.openFirewall = true;
     };
+    programs.gamemode.enable = true;
 
     environment.variables.STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${proton-ge-custom}";
   };
