@@ -11,6 +11,7 @@ in {
     environment.systemPackages = with pkgs; [
       discord
       mangohud
+      gamescope
       proton-ge-custom
     ];
 
