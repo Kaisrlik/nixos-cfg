@@ -3,10 +3,10 @@
 
 	inputs = {
 		nixpkgs.url = "nixpkgs/nixos-unstable-small";
-		nixify-cfg.url = "/home/jkaisrli/devel/nixos-cfg/nixify-cfg";
+		nixify-cfg.url = "git+file:./nixify-cfg";
 	};
 
-	outputs = { self, nixpkgs, nixify-cfg, ... }:
+	outputs = { self, nixpkgs, ... }@inputs:
 		let
 			system = "x86_64-linux";
 			lib = nixpkgs.lib;
@@ -20,7 +20,7 @@
 					inherit (nixpkgs) lib;
 					modules = [
 						./machine/intel/configuration.nix
-						nixify-cfg.nixosModules.intelize
+						inputs.nixify-cfg.nixosModules.intelize
 					];
 				};
 				beast = lib.nixosSystem {

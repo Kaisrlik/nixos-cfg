@@ -1,3 +1,4 @@
 intel
 *.qcow2
 Makefile.local
+nixify-cfg/
