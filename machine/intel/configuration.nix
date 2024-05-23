@@ -21,4 +21,7 @@ in {
     extraGroups = [ "wheel" "docker" "disk" "input" "video" "network" "audio" ]; # Enable ‘sudo’ for the user.
   };
 
+  intelize-vpn.enable = true;
+  intelize-mail.enable = true;
+  # intelize-cert.enable = true;
 }
