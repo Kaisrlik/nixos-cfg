@@ -85,8 +85,11 @@
   fileSystems."/opt/images" = {
     device = "/dev/disk/by-uuid/126C46C16C469F7B";
     fsType = "ntfs-3g";
-    # TODO: Pass uid
-    options = [ "rw" "uid=1001"];
+    options = [
+      "rw"
+      "users"
+      "nofail"
+    ];
   };
 
 }
