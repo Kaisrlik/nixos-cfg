@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "nixify-cfg": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718188727,
+        "narHash": "sha256-NO6lRuhDU6XoddWQQvfhDxo3uoNZgkPFq+gM5vKzmqM=",
+        "ref": "refs/heads/master",
+        "rev": "1b658512a2503929c02b130e8ac6712f79b99999",
+        "revCount": 15,
+        "type": "git",
+        "url": "file:./nixify-cfg"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:./nixify-cfg"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1721881299,
@@ -17,6 +37,7 @@
     },
     "root": {
       "inputs": {
+        "nixify-cfg": "nixify-cfg",
         "nixpkgs": "nixpkgs"
       }
     }
