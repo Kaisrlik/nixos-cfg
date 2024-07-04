@@ -46,6 +46,7 @@
     killall
     lnav
     ltex-ls
+    nil
     shellcheck
     tig
     tree
