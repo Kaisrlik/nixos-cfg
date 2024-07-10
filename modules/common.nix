@@ -48,6 +48,7 @@
     ltex-ls
     nil
     shellcheck
+    tree-sitter
     tig
     tree
     zsh
