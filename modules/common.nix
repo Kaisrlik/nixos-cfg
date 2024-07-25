@@ -48,7 +48,7 @@
     ltex-ls
     nil
     shellcheck
-    tree-sitter
+    tree-sitter nodejs-slim
     tig
     tree
     zsh
@@ -136,7 +136,6 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio.enable = true;
 
   users.users.root = {
