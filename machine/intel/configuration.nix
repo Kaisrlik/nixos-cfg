@@ -23,5 +23,5 @@ in {
 
   intelize-vpn.enable = true;
   intelize-mail.enable = true;
-  # intelize-cert.enable = true;
+  intelize-cert.enable = true;
 }
