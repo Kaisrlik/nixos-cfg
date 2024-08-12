@@ -21,6 +21,7 @@
       # efiInstallAsRemovable = true;
       # Define on which hard drive you want to install Grub.
       device = "nodev"; # or "nodev" for efi only
+      configurationLimit = 15;
     };
   };
 
