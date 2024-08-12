@@ -1,12 +1,12 @@
 { pkgs, ... }:
 {
+  services.displayManager.ly.enable = true;
+
   services.xserver = {
     enable = true;
     # Configure keymap in X11
     xkb.layout = "us";
     xkb.options = "eurosign:e";
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -33,8 +33,8 @@
     # enable share sreen
     wlr.enable = true;
     extraPortals = with pkgs; [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
     ];
   };
 
