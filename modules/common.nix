@@ -89,6 +89,7 @@
     ]))
     bash
     acpi # see battery status
+    alsa-utils # see sound status
     pavucontrol
 
     # vpn, certs, proxies
