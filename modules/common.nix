@@ -139,7 +139,8 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
+  services.pipewire.audio.enable = true;
 
   users.users.root = {
     shell = pkgs.zsh;
