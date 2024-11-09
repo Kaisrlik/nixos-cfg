@@ -66,7 +66,6 @@
     jq
 
     (callPackage ../pkgs/impressive { })
-    evince
     vlc
     lynx # html/text
 
@@ -156,9 +155,12 @@
     "steam"
     "steam-original"
     "steam-run"
+    "steam-unwrapped"
     "teams"
   ];
 
+  # we have vim
+  programs.nano.enable = false;
   programs.firejail = {
     enable = true;
     wrappedBinaries = {
