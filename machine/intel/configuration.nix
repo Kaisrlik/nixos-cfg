@@ -25,4 +25,6 @@ in {
   intelize-vpn.enable = true;
   intelize-mail.enable = true;
   intelize-cert.enable = true;
+
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8"];
 }
