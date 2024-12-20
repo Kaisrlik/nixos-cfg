@@ -125,7 +125,7 @@
 
   fonts.packages = with pkgs; [
     intel-one-mono
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    nerd-fonts.fira-code
   ];
 
 
