@@ -24,4 +24,8 @@ in {
   intelize-vpn.enable = true;
   intelize-mail.enable = true;
   intelize-cert.enable = true;
+  intelize-firefox.enable = true;
+  # intelize-email-oauth2-proxy.enable = true;
+
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8"];
 }

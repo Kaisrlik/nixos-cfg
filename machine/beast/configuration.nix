@@ -10,6 +10,7 @@ in {
     [
       ./hardware-configuration.nix
       ../../modules/common.nix
+      ../../modules/firefox.nix
       ../../modules/sway.nix
       ../../modules/gaming.nix
       ../../modules/mail.nix

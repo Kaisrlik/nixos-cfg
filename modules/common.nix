@@ -192,15 +192,6 @@
 
   programs.zsh.enable = true;
 
-  programs.firefox = {
-    enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-      extraPolicies = {
-        ExtensionSettings = {};
-      };
-    };
-  };
-
   # Enable the networkmanager deamon
   networking.networkmanager.enable = true;
   # Open ports in the firewall.
