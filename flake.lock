@@ -1,12 +1,32 @@
 {
   "nodes": {
+    "nixify-cfg": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733357307,
+        "narHash": "sha256-K/ruWJTXOYqC612fXDl/X4DWU/YCm6ocOs89aTJ141U=",
+        "ref": "refs/heads/master",
+        "rev": "dce61810dcf878b93af0db91c9d566d2e07e25b1",
+        "revCount": 24,
+        "type": "git",
+        "url": "file:./nixify-cfg"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:./nixify-cfg"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1731136819,
-        "narHash": "sha256-qGmBFnq3/9AiiLZUOVxDsU5j6ysL3PXA8KRp7muJWMs=",
+        "lastModified": 1734623593,
+        "narHash": "sha256-iA3kxtbds7yOc77oRBz2On9ZmOVI/1Pic+YQtYUyIsg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4a2c7def574d031cbf3d7110969f2ca5f38f8ed7",
+        "rev": "8af52ff6ba2ed83047881e877718db3bb02fad85",
         "type": "github"
       },
       "original": {
@@ -17,6 +37,7 @@
     },
     "root": {
       "inputs": {
+        "nixify-cfg": "nixify-cfg",
         "nixpkgs": "nixpkgs"
       }
     }
