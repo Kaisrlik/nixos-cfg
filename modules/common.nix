@@ -138,7 +138,7 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   services.pipewire.audio.enable = true;
 
   users.users.root = {
