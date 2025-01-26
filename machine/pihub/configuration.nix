@@ -11,6 +11,27 @@ in {
 #     <nixpkgs/nixos/modules/profiles/minimal.nix>
   ];
 
+  hardware.raspberry-pi.config.all = {
+    options = {
+      # Automatically load overlays for detected cameras
+      camera_auto_detect.enable = false;
+      # Disable compensation for displays with overscan
+      disable_overscan.enable = false;
+      # Automatically load overlays for detected DSI displays
+      display_auto_detect.enable = false;
+    };
+    dt-overlays.vc4-kms-v3d.enable = false;
+    base-dt-params = {
+      # # Enable the PCIe external connector
+      pciex1.enable = true;
+      # # Force Gen 3.0 speeds
+      pciex1_gen = {
+        enable = true;
+        value = 3;
+      };
+    };
+  };
+
   # only add strictly necessary modules
   # boot.initrd.includeDefaultModules = false;
   # boot.initrd.kernelModules = [ "ext4" ... ];
