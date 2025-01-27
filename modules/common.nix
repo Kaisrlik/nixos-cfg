@@ -53,6 +53,7 @@
     tig
     tree
     zsh
+    zathura # pdf browser
 
     # nix specific
     home-manager
