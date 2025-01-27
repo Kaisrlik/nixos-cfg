@@ -23,11 +23,21 @@ in {
     extraGroups = [ "wheel" "docker" "disk" "input" "video" "network" "audio" ]; # Enable ‘sudo’ for the user.
   };
 
-  intelize-vpn.enable = true;
-  intelize-mail.enable = true;
-  intelize-cert.enable = true;
-  intelize-firefox.enable = true;
-  intelize-email-oauth2-proxy.enable = true;
+  intelize = {
+    user = {
+      idsid = "jkaisrli";
+      email = "jan.kaisrlik@intel.com";
+    };
+    feature = {
+      cert.enable = true;
+      email-oauth2-proxy.enable = true;
+      firefox.enable = true;
+      fleet.enable = true;
+      krb.enable = true;
+      vpn.enable = true;
+      # falcon.enable = true;
+    };
+  };
 
   networking.nameservers = [ "1.1.1.1" "8.8.8.8"];
 }

@@ -19,11 +19,11 @@
 
     settings = {
       trusted-substituters = [
-        "http://nix-cache-info.dssaesc.igk.intel.com"
+        "http://nix-cache.dssaesc.igk.intel.com"
         "https://cache.nixos.org"
       ];
       trusted-public-keys = [
-        "nix-cache-info.dssaesc.igk.intel.com:7xvlH63Qq45Zmq1V+lH31n/bK+fOPN2/MGaRFp/yb0Q="
+        "nix-cache.dssaesc.igk.intel.com:Z+oi5yvZU1IZlO08ial9nqH8+93aX3sibxo9Uja5Aug="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
   };
