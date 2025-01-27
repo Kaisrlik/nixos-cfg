@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable-small";
-#     nixify-cfg = {
-#         url = "git+file:./nixify-cfg";
-#         inputs.nixpkgs.follows = "nixpkgs";
-#     };
+    nixify-cfg = {
+        url = "git+file:///home/jkaisrli/devel/nixos-cfg/nixify-cfg";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
