@@ -13,6 +13,7 @@
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
+    intel-email = "jan.kaisrlik@intel.com";
   in {
     nixosConfigurations = {
       intel = lib.nixosSystem {
@@ -22,6 +23,9 @@
           ./machine/intel/configuration.nix
           inputs.nixify-cfg.nixosModules.intelize
         ];
+        specialArgs = {
+            inherit intel-email;
+        };
       };
       beast = lib.nixosSystem {
         inherit system;
