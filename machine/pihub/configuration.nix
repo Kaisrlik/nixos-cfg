@@ -22,9 +22,12 @@ in {
     };
     dt-overlays.vc4-kms-v3d.enable = false;
     base-dt-params = {
-      # # Enable the PCIe external connector
+      # Enable the PCIe external connector
       pciex1.enable = true;
-      # # Force Gen 3.0 speeds
+      # Force Gen 3.0 speeds
+      # WARNING The Raspberry Pi 5 is not certified for Gen 3.0 speeds, and
+      # connections to PCIe devices at these speeds may be unstable. You should
+      # then reboot your Raspberry Pi for these settings to take effect.
       pciex1_gen = {
         enable = true;
         value = 3;
@@ -86,7 +89,6 @@ in {
   };
   services.nfs.server.exports = ''
     /export         192.168.1.0/24(insecure,rw,sync,no_subtree_check,crossmnt,fsid=0)
-    /export/home    192.168.1.0/24(insecure,rw,sync,no_subtree_check)
     /export/data    192.168.1.0/24(insecure,rw,sync,no_subtree_check)
   '';
 

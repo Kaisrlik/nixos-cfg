@@ -1,7 +1,7 @@
 {
   description = "Pi hub";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05-small";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11-small";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix/v0.4.1";
   };
 
