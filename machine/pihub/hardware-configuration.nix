@@ -26,6 +26,8 @@
 
   raspberry-pi-nix.board = "bcm2712";
 
+  # only add strictly necessary modules
+  boot.initrd.includeDefaultModules = false;
   boot.initrd.availableKernelModules = [
     "nvme"
     "usb_storage"

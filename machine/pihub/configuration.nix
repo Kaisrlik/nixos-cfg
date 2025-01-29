@@ -7,25 +7,23 @@ let
   username = "xeri";
 in {
   imports = [
-      ./hardware-configuration.nix
-#     <nixpkgs/nixos/modules/profiles/headless.nix>
-#     <nixpkgs/nixos/modules/profiles/minimal.nix>
+    ./hardware-configuration.nix
+    (modulesPath + "/profiles/headless.nix")
+    (modulesPath + "/profiles/minimal.nix")
   ];
 
-  # only add strictly necessary modules
-  # boot.initrd.includeDefaultModules = false;
-  # boot.initrd.kernelModules = [ "ext4" ... ];
-  # disabledModules =
-  # [
-  #   <nixpkgs/nixos/modules/profiles/all-hardware.nix>
-  #   <nixpkgs/nixos/modules/profiles/base.nix>
-  # ];
+  disabledModules =
+  [
+    (modulesPath + "/profiles/all-hardware.nix")
+    (modulesPath + "/profiles/base.nix")
+  ];
 
   # disable useless software
   environment.defaultPackages = [];
   xdg.icons.enable  = false;
   xdg.mime.enable   = false;
   xdg.sounds.enable = false;
+  programs.nano.enable = false;
 
   time.timeZone = "Europe/Prague";
   users.users.root = {
@@ -33,14 +31,13 @@ in {
   };
 
   networking = {
-      hostName = "pihub";
-  };
-  # nfs
-  networking.firewall = {
-    enable = true;
-      # for NFSv3; view with `rpcinfo -p`
-    allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
-    allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
+    hostName = "pihub";
+    firewall = {
+      enable = true;
+        # for NFSv3; view with `rpcinfo -p`
+      allowedTCPPorts = [ 111 2049 4000 4001 4002 20048 ];
+      allowedUDPPorts = [ 111 2049 4000 4001 4002 20048 ];
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -49,6 +46,8 @@ in {
       vim
       wget
   ];
+  programs.zsh.enable = true;
+
   services.nfs.server = {
     enable = true;
     # fixed rpc.statd port; for firewall
@@ -66,8 +65,6 @@ in {
       enable = true;
   };
   system.stateVersion = "24.11";
-
-  programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
