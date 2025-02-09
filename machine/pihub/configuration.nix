@@ -57,8 +57,8 @@ in {
     extraNfsdConfig = '''';
   };
   services.nfs.server.exports = ''
-    /export         192.168.1.0/24(insecure,rw,sync,no_subtree_check,crossmnt,fsid=0)
-    /export/data    192.168.1.0/24(insecure,rw,sync,no_subtree_check)
+    /srv      192.168.1.0/24(insecure,rw,sync,no_subtree_check,crossmnt,fsid=0)
+    /srv/data 192.168.1.0/24(insecure,rw,sync,no_subtree_check)
   '';
 
   services.openssh = {
@@ -73,8 +73,7 @@ in {
     extraGroups = [ "wheel" "docker" "disk" "input" "video" "network" "audio" ]; # Enable ‘sudo’ for the user.
     initialPassword = "xeri";
     openssh.authorizedKeys.keys = [
-    # beast
-    "AAAAB3NzaC1yc2EAAAADAQABAAABgQCqo5qym7gpyFrfoUzWW8v48ovVL/oI5TC0wdhnH0ZTp1OpAhWUlF96EHHmVCi0Agrx5Blf86/hbx07vzzrS+MVsg+dRkaaaMcn3JoBrUykvkttey8SseRFJJmP4+Upu1fyBv3CzVqrn5SZ2jhw2Ti1EbCz82gVIeA5cJhRb+i+VckEOfkOQT4VnS175b+U5+/TZl3jfTf9cyoVXziaS7jHEh2/yWE60Cdzdbje6VZuxM/zVSf7TZsQ/tTqnP7uWEDC9d0La7cfSHzYZnh2mULpcr1M6F+gukIZHk2UOhuPiC/SIk3B1xElPz1azi3QxW0KKRI4gvgplh6Ft+jVbtkYQHVE0cvrFu98EuUTm96kg/dQ1T6O5XohyKop930MMic5raNdcAXj4a0eYrN9GnMklYUhP2XQO3b+z81QgSO3dXBJyjeX1oazEpx6kAPaNYpsleyJO6gXjAnZpRyUypQUayKTttsg7XtPKwKWYpjsZtC771AJfptiBdKd4a+xGVk="
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCqo5qym7gpyFrfoUzWW8v48ovVL/oI5TC0wdhnH0ZTp1OpAhWUlF96EHHmVCi0Agrx5Blf86/hbx07vzzrS+MVsg+dRkaaaMcn3JoBrUykvkttey8SseRFJJmP4+Upu1fyBv3CzVqrn5SZ2jhw2Ti1EbCz82gVIeA5cJhRb+i+VckEOfkOQT4VnS175b+U5+/TZl3jfTf9cyoVXziaS7jHEh2/yWE60Cdzdbje6VZuxM/zVSf7TZsQ/tTqnP7uWEDC9d0La7cfSHzYZnh2mULpcr1M6F+gukIZHk2UOhuPiC/SIk3B1xElPz1azi3QxW0KKRI4gvgplh6Ft+jVbtkYQHVE0cvrFu98EuUTm96kg/dQ1T6O5XohyKop930MMic5raNdcAXj4a0eYrN9GnMklYUhP2XQO3b+z81QgSO3dXBJyjeX1oazEpx6kAPaNYpsleyJO6gXjAnZpRyUypQUayKTttsg7XtPKwKWYpjsZtC771AJfptiBdKd4a+xGVk= beast"
     ];
   };
 }

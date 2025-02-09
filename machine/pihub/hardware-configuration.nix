@@ -34,4 +34,14 @@
     "usbhid"
     "xhci_pci"
   ];
+
+  fileSystems."/srv/data" = {
+    device = "/dev/disk/by-uuid/03830c40-3654-4f21-8b31-29d8ace4dd9e";
+    fsType = "ext4";
+    options = [
+      "rw"
+      "users"
+      "nofail"
+    ];
+  };
 }
