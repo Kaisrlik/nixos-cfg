@@ -9,6 +9,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     ../../modules/mdns.nix
+    ../../modules/zsh.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
   ];
@@ -47,7 +48,6 @@ in {
       vim
       wget
   ];
-  programs.zsh.enable = true;
 
   services.nfs.server = {
     enable = true;
