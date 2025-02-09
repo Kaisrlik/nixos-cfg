@@ -58,7 +58,7 @@ in {
   };
   services.nfs.server.exports = ''
     /srv      192.168.1.0/24(insecure,rw,sync,no_subtree_check,crossmnt,fsid=0)
-    /srv/data 192.168.1.0/24(insecure,rw,sync,no_subtree_check)
+    /srv/data 192.168.1.0/24(insecure,rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=100)
   '';
 
   services.openssh = {
@@ -68,6 +68,7 @@ in {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
+    uid = 1000;
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "docker" "disk" "input" "video" "network" "audio" ]; # Enable ‘sudo’ for the user.
