@@ -15,6 +15,7 @@ in {
       ../../modules/gaming.nix
       ../../modules/mail.nix
       ../../modules/photo.nix
+      ../../modules/mdns.nix
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

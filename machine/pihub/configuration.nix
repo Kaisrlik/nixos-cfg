@@ -8,6 +8,7 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/mdns.nix
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/minimal.nix")
   ];
