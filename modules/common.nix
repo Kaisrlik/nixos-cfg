@@ -54,10 +54,12 @@
     tree
     zsh
     zathura # pdf browser
+    unzip
 
     # nix specific
     home-manager
     direnv
+    nix-tree
 
     gnumake
     cmake
