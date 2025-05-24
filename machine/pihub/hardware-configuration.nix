@@ -44,4 +44,14 @@
       "nofail"
     ];
   };
+
+  fileSystems."/srv/backup" = {
+    device = "/dev/disk/by-uuid/86600537-8e9e-48d1-9926-e639c7361a58";
+    fsType = "ext4";
+    options = [
+      "rw"
+      "users"
+      "nofail"
+    ];
+  };
 }

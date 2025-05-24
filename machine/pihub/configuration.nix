@@ -58,8 +58,9 @@ in {
     extraNfsdConfig = '''';
   };
   services.nfs.server.exports = ''
-    /srv      192.168.1.0/24(insecure,rw,sync,no_subtree_check,crossmnt,fsid=0)
-    /srv/data 192.168.1.0/24(insecure,rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=100)
+    /srv        192.168.1.0/24(insecure,rw,sync,no_subtree_check,crossmnt,fsid=0)
+    /srv/data   192.168.1.0/24(insecure,rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=100)
+    /srv/backup 192.168.1.0/24(insecure,rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=100)
   '';
 
   services.openssh = {
