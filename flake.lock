@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744701949,
-        "narHash": "sha256-tLaKH9ow7cWs6/JJDr3FiFYx5rVuK7yyC7v/G9cC6L0=",
-        "ref": "refs/heads/master",
-        "rev": "8b7da434ad251adfa3f02f16001c768b77560586",
-        "revCount": 32,
+        "lastModified": 1744709477,
+        "narHash": "sha256-ZuJPuTGJ0OFEPXGyVm9Tb/Wk7sEGmK2gvIGEbKQEHEo=",
+        "ref": "refs/heads/feature/edss",
+        "rev": "438fffb3a1e3fd9737fa19e4f1c0622076db05e5",
+        "revCount": 33,
         "type": "git",
         "url": "file:///home/jkaisrli/devel/nixos-cfg/nixify-cfg"
       },
