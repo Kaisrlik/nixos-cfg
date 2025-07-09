@@ -12,7 +12,6 @@ in {
       discord
       mangohud
       gamescope
-      proton-ge-custom
     ];
 
     programs.steam = {
@@ -21,9 +20,11 @@ in {
       remotePlay.openFirewall = true;
       # Open ports in the firewall for Source Dedicated Server
       dedicatedServer.openFirewall = true;
+
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
     };
     programs.gamemode.enable = true;
-
-    environment.variables.STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${proton-ge-custom}";
   };
 }
