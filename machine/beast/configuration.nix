@@ -15,6 +15,7 @@ in {
       ../../modules/gaming.nix
       ../../modules/mail.nix
       ../../modules/photo.nix
+      ../../modules/dns.nix
       ../../modules/mdns.nix
     ];
 
