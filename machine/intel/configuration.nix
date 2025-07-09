@@ -13,6 +13,7 @@ in {
       ../../modules/sway.nix
       ../../modules/mail.nix
       ../../modules/builder.nix
+      ../../modules/dns.nix
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
