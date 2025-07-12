@@ -17,6 +17,7 @@ in {
       ../../modules/photo.nix
       ../../modules/dns.nix
       ../../modules/mdns.nix
+      ../../modules/home-printing.nix
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
