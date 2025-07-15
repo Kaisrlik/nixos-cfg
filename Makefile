@@ -2,7 +2,7 @@ IMAGE=intel
 -include Makefile.local
 
 flake:
-	nixos-rebuild switch --impure --flake .#$(IMAGE)
+	nixos-rebuild switch --flake .#$(IMAGE)
 
 nixify-cfg/.git:
 	mkdir nixify-cfg
