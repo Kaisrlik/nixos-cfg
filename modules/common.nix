@@ -82,7 +82,7 @@
     sshfs
 
     libnotify
-    firefox-wayland
+    firefox
     perl # required by some i3 scripts
     # required by nvim and other tools
     (python3.withPackages (p: with p; [
@@ -167,7 +167,7 @@
   programs.firejail = {
     enable = true;
     wrappedBinaries = {
-      slack = "${pkgs.slack}/bin/slack";
+      # slack = "${pkgs.slack}/bin/slack";
       spotify = "${pkgs.spotify}/bin/spotify";
       # teams = "${pkgs.teams}/bin/teams";
     };
