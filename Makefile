@@ -2,7 +2,10 @@ IMAGE=intel
 -include Makefile.local
 
 flake:
-	nixos-rebuild switch --flake .#$(IMAGE)
+	# Following cmds do: nixos-rebuild switch --flake .#$(IMAGE)
+	# Avoid running nix build under root user
+	nix build .#nixosConfigurations.$(IMAGE).config.system.build.toplevel
+	sudo result/bin/switch-to-configuration switch
 
 nixify-cfg/.git:
 	mkdir nixify-cfg
