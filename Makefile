@@ -7,6 +7,9 @@ flake:
 	nix build .#nixosConfigurations.$(IMAGE).config.system.build.toplevel
 	sudo result/bin/switch-to-configuration switch
 
+home:
+	home-manager switch --flake .
+
 nixify-cfg/.git:
 	mkdir nixify-cfg
 	echo "{ }" > nixify-cfg/flake.nix
