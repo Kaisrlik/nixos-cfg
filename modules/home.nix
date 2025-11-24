@@ -14,7 +14,7 @@
   home.file.".gitignore".source = "${inputs.dot-files}/git.configs/gitignore";
   home.file.".gitconfig".source = "${inputs.dot-files}/git.configs/gitconfig";
   home.file.".zshrc".source = "${inputs.dot-files}/omzsh.configs/zshrc";
-  home.file.".config/foot/foot.ini".source = "${inputs.dot-files}/foot.congigs/foot.ini";
+  home.file.".config/foot/foot.ini".source = "${inputs.dot-files}/foot.configs/foot.ini";
 
 
   # This value determines the Home Manager release that your
