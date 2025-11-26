@@ -16,6 +16,7 @@ in {
       ../../modules/mail.nix
       ../../modules/photo.nix
       ../../modules/dns.nix
+      ../../modules/firefox.nix
       ../../modules/mdns.nix
       ../../modules/home-printing.nix
     ];
