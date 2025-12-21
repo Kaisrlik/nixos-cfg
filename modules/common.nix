@@ -86,10 +86,7 @@
     firefox
     perl # required by some i3 scripts
     # required by nvim and other tools
-    (python3.withPackages (p: with p; [
-      # impressive dep
-      pillow pygame
-    ]))
+    python3
     bash
     acpi # see battery status
     alsa-utils # see sound status
