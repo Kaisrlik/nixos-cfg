@@ -19,6 +19,7 @@ in {
       ../../modules/firefox.nix
       ../../modules/mdns.nix
       ../../modules/home-printing.nix
+      # ../../modules/sshd.nix {username = username;}
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
