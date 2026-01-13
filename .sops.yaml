@@ -1,0 +1,11 @@
+# If ssh key is password protected we need to load it via:
+# read -s SSH_TO_AGE_PASSPHRASE; export SSH_TO_AGE_PASSPHRASE
+# ssh-to-age -private-key -i $HOME/.ssh/id_ed25519 -o key.txt
+keys:
+  - &xeri-beast age1ff8afqqc2y8rnn0py35umpta2fe2cr5mf76x9ngkktah05q9lcmsq9cn58
+# …more server keys go here…
+creation_rules:
+  - path_regex: machine/beast/secrets/.*\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *xeri-beast
