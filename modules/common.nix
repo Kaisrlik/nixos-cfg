@@ -86,7 +86,9 @@
     firefox
     perl # required by some i3 scripts
     # required by nvim and other tools
-    python3
+    (python3.withPackages (p: with p; [
+      pynvim
+    ]))
     bash
     acpi # see battery status
     alsa-utils # see sound status
