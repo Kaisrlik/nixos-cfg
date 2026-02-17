@@ -13,6 +13,7 @@
       swayidle
       wl-clipboard
       wlr-randr
+      wlr-which-key
       bemenu
       i3blocks
       mako # notification daemon
