@@ -88,6 +88,7 @@
     # required by nvim and other tools
     (python3.withPackages (p: with p; [
       pynvim
+      requests
     ]))
     bash
     acpi # see battery status
