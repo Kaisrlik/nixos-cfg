@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, modulesPath, ... }:
+{ pkgs, ... }:
 let
   username = "jkaisrli";
 in {
@@ -15,6 +15,7 @@ in {
       ../../modules/builder.nix
       ../../modules/dns.nix
       ../../modules/firefox.nix
+      ../../modules/office.nix
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
