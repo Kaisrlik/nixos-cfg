@@ -38,7 +38,7 @@
     neovim
     ccls
     ctags
-    silver-searcher
+    ripgrep
 
     file
     foot
