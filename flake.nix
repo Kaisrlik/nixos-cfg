@@ -7,6 +7,10 @@
         url = "git+file:///home/jkaisrli/devel/nixos-cfg/nixify-cfg";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -22,6 +26,7 @@
         modules = [
           ./machine/intel/configuration.nix
           inputs.nixify-cfg.nixosModules.intelize
+          inputs.sops-nix.nixosModules.sops
         ];
       };
       beast = lib.nixosSystem {

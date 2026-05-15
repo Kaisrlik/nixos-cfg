@@ -20,8 +20,28 @@ in {
     ];
 
   environment.systemPackages = with pkgs; [
+    # sops
+    age
+    sops
+
     github-copilot-cli
   ];
+
+  # sops configuration
+  sops = {
+    defaultSopsFile = secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age = {
+      keyFile = "/home/jkaisrli/.config/sops/age/keys.txt";
+    };
+    secrets = {
+      "mg-token" = {
+        owner = "jkaisrli";
+        group = "users";
+        mode = "0400";
+      };
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
