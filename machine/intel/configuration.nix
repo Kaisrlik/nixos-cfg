@@ -18,6 +18,10 @@ in {
       ../../modules/office.nix
     ];
 
+  environment.systemPackages = with pkgs; [
+    github-copilot-cli
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
