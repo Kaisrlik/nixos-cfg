@@ -3,9 +3,14 @@
 # ssh-to-age -private-key -i $HOME/.ssh/id_ed25519 -o key.txt
 keys:
   - &xeri-beast age1ff8afqqc2y8rnn0py35umpta2fe2cr5mf76x9ngkktah05q9lcmsq9cn58
+  - &your-key age1uc2axf95dl6p5svpenzkpy97ws74waltft4n0fpth86me0pcg5rs9y8ehm
 # …more server keys go here…
 creation_rules:
   - path_regex: machine/beast/secrets/.*\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *xeri-beast
+  - path_regex: secrets/intel/secrets/.*\.yaml$
+    key_groups:
+    - age:
+      - *your-key
