@@ -26,7 +26,7 @@ in {
   users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "docker" "disk" "input" "video" "network" "audio" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "dialout" "disk" "input" "video" "network" "audio" ];
   };
 
   intelize-vpn.enable = true;
