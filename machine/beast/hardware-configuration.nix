@@ -25,11 +25,6 @@
       fsType = "vfat";
     };
 
-  fileSystems."/export/nfs" = {
-    device = "/home/xeri/Downloads";
-    options = [ "bind" ];
-  };
-
   services.nfs.server = {
     enable = true;
     # fixed rpc.statd port; for firewall
