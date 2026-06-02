@@ -19,7 +19,7 @@ in {
       ../../modules/firefox.nix
       ../../modules/mdns.nix
       ../../modules/home-printing.nix
-      # ../../modules/sshd.nix {username = username;}
+      (import ../../modules/sshd.nix {inherit username;})
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -31,4 +31,23 @@ in {
 
   gaming.enable = true;
 
+  boot.supportedFilesystems = [ "ext4" ];
+  boot.loader = {
+    # systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+
+    # Use the GRUB 2 boot loader.
+    grub = {
+      enable = true;
+      efiSupport = true;
+      # boot is located on encrypted partition
+      # efiInstallAsRemovable = true;
+      # Define on which hard drive you want to install Grub.
+      device = "nodev"; # or "nodev" for efi only
+      configurationLimit = 15;
+    };
+  };
 }

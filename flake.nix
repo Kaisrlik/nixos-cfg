@@ -41,6 +41,10 @@
         inherit system;
         modules = [ ./machine/beast/configuration.nix ];
       };
+      monika = lib.nixosSystem {
+        inherit system;
+        modules = [ ./machine/monika/configuration.nix ];
+      };
     };
   };
 }

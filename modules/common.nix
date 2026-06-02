@@ -6,26 +6,6 @@
     settings.trusted-users = [ "@wheel" ];
   };
 
-  boot.supportedFilesystems = [ "ext4" ];
-  boot.loader = {
-    # systemd-boot.enable = true;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-
-    # Use the GRUB 2 boot loader.
-    grub = {
-      enable = true;
-      efiSupport = true;
-      # boot is located on encrypted partition
-      # efiInstallAsRemovable = true;
-      # Define on which hard drive you want to install Grub.
-      device = "nodev"; # or "nodev" for efi only
-      configurationLimit = 15;
-    };
-  };
-
   # enabled in later version
   # nixpkgs.overlays = [ (self: super: {
   #   isync = super.isync.override { withCyrusSaslXoauth2 = true; };
@@ -155,6 +135,7 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "discord"
     "github-copilot-cli"
+    "google-chrome"
     "slack"
     "spotify"
     "steam"
@@ -162,6 +143,7 @@
     "steam-run"
     "steam-unwrapped"
     "teams"
+    "xnviewmp"
   ];
 
   # we have vim

@@ -36,4 +36,24 @@ in {
   intelize-email-oauth2-proxy.enable = true;
 
   networking.nameservers = [ "1.1.1.1" "8.8.8.8"];
+
+  boot.supportedFilesystems = [ "ext4" ];
+  boot.loader = {
+    # systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+
+    # Use the GRUB 2 boot loader.
+    grub = {
+      enable = true;
+      efiSupport = true;
+      # boot is located on encrypted partition
+      # efiInstallAsRemovable = true;
+      # Define on which hard drive you want to install Grub.
+      device = "nodev"; # or "nodev" for efi only
+      configurationLimit = 15;
+    };
+  };
 }

@@ -14,3 +14,6 @@ nixify-cfg/.git:
 	mkdir nixify-cfg
 	echo "{ }" > nixify-cfg/flake.nix
 	cd nixify-cfg; git init; git add flake.nix; git commit -m "tmp"
+
+monika:
+	nixos-rebuild --target-host monika --use-remote-sudo switch --flake .#monika --ask-elevate-password
