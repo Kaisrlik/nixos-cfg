@@ -59,6 +59,7 @@ in {
       cert.enable = true;
       email-oauth2-proxy.enable = true;
       firefox.enable = true;
+      fonts.enable = true;
       fleet.enable = true;
       krb.enable = true;
       vpn.enable = true;

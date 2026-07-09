@@ -1,48 +1,32 @@
 {
   "nodes": {
-    "dot-files": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1780239508,
-        "narHash": "sha256-Km7p6mH/CPpRlnmo85EjF+IVnrTW3P3b4Ytc1Gnfoew=",
-        "ref": "refs/heads/master",
-        "rev": "23ff5a5abc66d68307f71c30c79c3676c8e2f848",
-        "revCount": 138,
-        "type": "git",
-        "url": "file:///home/xeri/devel/configs"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///home/xeri/devel/configs"
-      }
-    },
-    "home-manager": {
+    "nixify-cfg": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1784351324,
-        "narHash": "sha256-By+kuRJZRqs2TuXgtR8vJ8cTKWXw33YG/Yollu5cO1U=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "460108009ca1ff69ca2ff19079ca2c838d6e3080",
-        "type": "github"
+        "lastModified": 1784798374,
+        "narHash": "sha256-22N9doZ8z41kwsdDDuK/f49AZg9w6YPnWJqo5zL8rWM=",
+        "ref": "refs/heads/master",
+        "rev": "052b934aa9f7c8ae7d9761efad18054d034e7bca",
+        "revCount": 61,
+        "type": "git",
+        "url": "file:///home/jkaisrli/devel/nixos-cfg/nixify-cfg"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/jkaisrli/devel/nixos-cfg/nixify-cfg"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784326432,
-        "narHash": "sha256-jJ74JfVA5/L0PgR0GuE0NHOiKhorsetkdkKoaTq0zm8=",
-        "rev": "1f622082bee30eee91f6ad47512fd13e176d29ee",
+        "lastModified": 1784763249,
+        "narHash": "sha256-455YGrBPrxzU391caL8OwotX+ybtAzi3U9/ncYU6Q/g=",
+        "rev": "2526016ba5d102028225a372d676f639e22ae5d1",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable-small/nixos-26.11pre1036728.1f622082bee3/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/unstable-small/nixos-26.11pre1040279.2526016ba5d1/nixexprs.tar.xz"
       },
       "original": {
         "id": "nixpkgs",
@@ -52,9 +36,29 @@
     },
     "root": {
       "inputs": {
-        "dot-files": "dot-files",
-        "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixify-cfg": "nixify-cfg",
+        "nixpkgs": "nixpkgs",
+        "sops-nix": "sops-nix"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783174389,
+        "narHash": "sha256-aCWC8ngycU7OdJrU2+Je3qf+1a2ykuBvpPhZT/9tXMc=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "f1406619a3884cd5c47992a70b8b35c9c0fcb4c9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     }
   },
