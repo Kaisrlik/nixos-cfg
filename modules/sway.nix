@@ -25,7 +25,16 @@
   xdg.portal = {
     enable = true;
     # enable share sreen
-    wlr.enable = true;
+    wlr = {
+      enable = true;
+      settings.screencast = {
+        max_fps = 30;
+        chooser_type = "dmenu";
+        chooser_cmd = "${pkgs.bemenu}/bin/bemenu -l 12 --center --width-factor 0.5 -p \"Share window:\" -i -B 3";
+        exec_before = "${pkgs.swaynotificationcenter}/bin/swaync-client --dnd-on";
+        exec_after = "${pkgs.swaynotificationcenter}/bin/swaync-client --dnd-off";
+      };
+    };
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
