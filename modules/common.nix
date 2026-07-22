@@ -16,9 +16,6 @@
   environment.systemPackages = with pkgs; [
     vim
     neovim
-    ccls
-    ctags
-    ripgrep
 
     file
     foot
@@ -27,10 +24,6 @@
     htop
     killall
     lnav
-    ltex-ls
-    nil
-    shellcheck
-    tree-sitter nodejs-slim
     tig
     tree
     zsh
@@ -43,10 +36,6 @@
     nix-tree
 
     gnumake
-    cmake
-    meson
-    ninja
-    gcc
     jq
 
     (callPackage ../pkgs/impressive { })
@@ -81,6 +70,7 @@
     netcat-openbsd
     openconnect
     openssl # expiration of certs
+    tcpdump
 
     # windows rdp
     remmina
@@ -128,9 +118,6 @@
   users.users.root = {
     shell = pkgs.zsh;
   };
-
-  # libraries and dev utils may provide additional documentation/man-pages
-  documentation.dev.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "discord"
