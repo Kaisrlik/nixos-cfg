@@ -52,7 +52,7 @@
     sshfs
 
     libnotify
-    firefox
+    (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
     perl # required by some i3 scripts
     # required by nvim and other tools
     (python3.withPackages (p: with p; [
