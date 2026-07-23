@@ -21,6 +21,7 @@
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
+    pkgs = nixpkgs.legacyPackages.${system};
   in {
     homeConfigurations.xeri = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
@@ -46,5 +47,8 @@
         modules = [ ./machine/monika/configuration.nix ];
       };
     };
+
+    # devShells
+    devShells.x86_64-linux.docs = import ./devshells/docs.nix { inherit pkgs; };
   };
 }
