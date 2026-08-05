@@ -31,6 +31,7 @@
       i3blocks
       mako # notification daemon
       sysstat # cpu_stats script
+      slurp grim # screen capturing
     ];
   };
 
