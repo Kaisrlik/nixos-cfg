@@ -5,6 +5,9 @@ flake:
 	# Following cmds do: nixos-rebuild switch --flake .#$(IMAGE)
 	# Avoid running nix build under root user
 	nix build .#nixosConfigurations.$(IMAGE).config.system.build.toplevel
+	# Workaround to isntall to bootloader
+	# https://github.com/NixOS/nixpkgs/issues/82851
+	sudo nix-env -p /nix/var/nix/profiles/system --set ./result
 	sudo result/bin/switch-to-configuration switch
 
 home:
