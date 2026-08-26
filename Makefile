@@ -20,3 +20,6 @@ nixify-cfg/.git:
 
 monika:
 	nixos-rebuild --target-host monika --use-remote-sudo switch --flake .#monika --ask-elevate-password
+
+synas:
+	nix build .#nixosConfigurations.$@.config.system.build.ext4Image -o result-synas-img

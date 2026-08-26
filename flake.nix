@@ -46,6 +46,10 @@
         inherit system;
         modules = [ ./machine/monika/configuration.nix ];
       };
+      synas = lib.nixosSystem {
+        inherit system;
+        modules = [ ./machine/synas/configuration.nix ];
+      };
     };
 
     # devShells
