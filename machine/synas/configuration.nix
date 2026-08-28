@@ -2,12 +2,6 @@
 
 let
   username = "synas";
-
-  # Build custom kernel with exact .config (without NixOS modifications)
-  # Using raw kernel builder that doesn't add extra config options
-  # Note: We're not using boot.kernelPackages because NixOS modifies the config.
-  # Instead, we build the kernel separately and reference it in the image.
-  kernel-raw = import ./kernel-raw.nix { inherit pkgs lib; };
 in {
   imports = [
     ./hardware-configuration.nix
@@ -46,6 +40,9 @@ in {
   };
 
   boot.kernelParams = [ "console=ttyS0,115200" ];
+
+  # Use custom kernel built with exact .config from ./kernel-custom.nix
+  boot.kernelPackages = import ./kernel-custom.nix { inherit pkgs; };
 
   # Disable kernel modules completely
   boot.initrd.enable = false;
@@ -130,7 +127,7 @@ in {
 
       # Add custom kernel bzImage to /boot (built with exact .config)
       mkdir -p ./files/boot
-      cp ${kernel-raw}/bzImage ./files/boot/bzImage
+      cp ${config.boot.kernelPackages.kernel}/bzImage ./files/boot/bzImage
     '';
   };
 
