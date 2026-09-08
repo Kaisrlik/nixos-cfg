@@ -21,6 +21,8 @@ in {
 
   environment.systemPackages = with pkgs; [
     github-copilot-cli
+    # tooling required
+    nodejs
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
