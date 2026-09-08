@@ -1,6 +1,7 @@
 { pkgs }:
 pkgs.mkShell {
-  packages = [
-    pkgs.typst
+  packages = with pkgs; [
+    tinymist
+    typst
   ];
 }
