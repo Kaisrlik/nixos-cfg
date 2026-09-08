@@ -39,6 +39,15 @@ in {
     serviceConfig.Restart = "always";
   };
 
+  services.udev.extraRules = ''
+    # AHCI controller 0000:00:17.0
+    KERNEL=="sd*", ENV{ID_PATH}=="pci-0000:00:17.0-ata-1.0", SYMLINK+="bay1%nn"
+    KERNEL=="sd*", ENV{ID_PATH}=="pci-0000:00:17.0-ata-2.0", SYMLINK+="bay2%nn"
+    KERNEL=="sd*", ENV{ID_PATH}=="pci-0000:00:17.0-ata-3.0", SYMLINK+="bay3%nn"
+    KERNEL=="sd*", ENV{ID_PATH}=="pci-0000:00:17.0-ata-4.0", SYMLINK+="bay4%nn"
+    # AHCI controller 0000:00:18.0 and 0000:02:00.0 are not exposed
+  '';
+
   boot.kernelParams = [ "console=ttyS0,115200" ];
 
   # Use custom kernel built with exact .config from ./kernel-custom.nix
@@ -75,6 +84,7 @@ in {
     vim
     wget
     htop
+    pciutils
     rsync
   ];
 
