@@ -25,6 +25,8 @@ in {
     sops
 
     github-copilot-cli
+    # tooling required
+    nodejs
   ];
 
   # sops configuration
