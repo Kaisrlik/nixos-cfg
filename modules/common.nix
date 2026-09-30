@@ -121,6 +121,7 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "discord"
+    "discord-unwrapped"
     "github-copilot-cli"
     "google-chrome"
     "slack"
