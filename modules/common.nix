@@ -62,7 +62,7 @@
     bash
     acpi # see battery status
     alsa-utils # see sound status
-    pavucontrol
+    wiremix
 
     # vpn, certs, proxies
     cacert
