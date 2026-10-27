@@ -51,4 +51,6 @@ in {
       configurationLimit = 15;
     };
   };
+
+  system.stateVersion = "26.11";
 }
