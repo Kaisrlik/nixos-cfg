@@ -4,7 +4,7 @@
     ccls
     ctags
     ripgrep
-    ltex-ls
+    ltex-ls-plus
     nil
     shellcheck
     tree-sitter nodejs-slim

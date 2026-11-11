@@ -1,17 +1,16 @@
 { pkgs, ... }:
 {
-  nixpkgs.overlays = [
-    (final: prev: {
-      xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (oldAttrs: {
-        version = "0.8.4";
-        src = oldAttrs.src.override {
-          rev = "v0.8.4";
-          sha256 = "sha256-8Ohgkz13FcG8ddjjgreXkvFD2Q+zUDZnAM4Oh+C9P/s=";
-        };
-      });
-    })
-  ];
-
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (oldAttrs: {
+  #       version = "0.8.4";
+  #       src = oldAttrs.src.override {
+  #         rev = "v0.8.4";
+  #         sha256 = "sha256-8Ohgkz13FcG8ddjjgreXkvFD2Q+zUDZnAM4Oh+C9P/s=";
+  #       };
+  #     });
+  #   })
+  # ];
 
   services.displayManager.ly.enable = true;
 
